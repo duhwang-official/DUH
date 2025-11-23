@@ -1,3 +1,7 @@
+##
+## DUH_Makie_Utils.jl
+## by Dong-Uk Hwang. 
+##
 module DUH_Makie_Utils
 
     using Makie
@@ -22,8 +26,6 @@ module DUH_Makie_Utils
     end
     drawGL(::Nothing) = error("No figure exists..")
     drawGL() = drawGL(current_figure())
-
-    hello() = @info "Hello"
 
     ## 아래 함수는 x축이 날짜인 경우 문제를 해결하기 위한 함수 집합임.
 
