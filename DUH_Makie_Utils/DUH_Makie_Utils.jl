@@ -32,7 +32,7 @@ module DUH_Makie_Utils
 
     using Dates
 
-    function gen_date_ticks_fun(n_ticks::Int, format::String="auto")
+    function DUH_gen_date_ticks_fun(n_ticks::Int, format::String="auto")
 
         n_ticks > 0 || error("date_ticks: n_ticks must be positive!")
 
@@ -48,9 +48,9 @@ module DUH_Makie_Utils
 
             time_span = dt_max - dt_min
 
-            interval, date_format = choose_interval_and_format(time_span, n_ticks,format)
+            interval, date_format = DUH_choose_interval_and_format(time_span, n_ticks,format)
 
-            tick_dates = generate_ticks(dt_min, dt_max, interval)
+            tick_dates = DUH_generate_ticks(dt_min, dt_max, interval)
 
             tick_position = Float64[Dates.date2epochdays(dt) for dt in tick_dates]
 
@@ -61,7 +61,7 @@ module DUH_Makie_Utils
 
     end
 
-    function choose_interval_and_format(time_span::Period, n_ticks::Int, user_format::String)
+    function DUH_choose_interval_and_format(time_span::Period, n_ticks::Int, user_format::String)
 
         total_days = Dates.value(time_span)
 
@@ -85,7 +85,7 @@ module DUH_Makie_Utils
 
     end
 
-    function estimate_interval(time_span::Period, n_ticks::Int)
+    function DUH_estimate_interval(time_span::Period, n_ticks::Int)
         
         total_days = Dates.value(time_span)
         interval_days = total_days / n_ticks
@@ -98,9 +98,9 @@ module DUH_Makie_Utils
 
     end
 
-    function generate_ticks(dt_min::Date, dt_max::Date, interval::Period)
+    function DUH_generate_ticks(dt_min::Date, dt_max::Date, interval::Period)
 
-        first_tick = round_date(dt_min, interval)
+        first_tick = DUH_round_date(dt_min, interval)
 
         ticks = Date[]
         current = first_tick
@@ -127,7 +127,7 @@ module DUH_Makie_Utils
     """
         function round_date(dt::Date, interval::Period) -> Date
     """
-    function round_date(dt::Date, interval::Period)
+    function DUH_round_date(dt::Date, interval::Period)
 
         if interval isa Year
             return Date( year( dt), 1, 1 )
